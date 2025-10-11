@@ -205,3 +205,42 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+Python
+
+*.pyc pycache/ *.pyo *.pyd .Python *.egg-info/ dist/ build/
+
+Django
+
+*.log *.pot *.pyc *.sqlite3 migrations/ staticfiles/
+
+Virtual environment
+
+venv/ env/ .venv/ ENV/
+
+IDE and editor files
+
+.idea/ .vscode/ *.sublime-project *.sublime-workspace
+
+Static and media files
+
+/static/Magic/.png /static/Magic/.mp4 /staticfiles/ /media/
+
+Database
+
+*.db *.sqlite
+
+Cache and temporary files
+
+*.cache *.bak *.swp *~ .DS_Store Thumbs.db
+
+Environment variables
+
+.env *.env .env.!.env.example
+
+Testing and coverage
+
+htmlcov/ .coverage .coverage.* .tox/ nosetests.xml coverage.xml *.cover *.pytest_cache/
+
+Miscellaneous
+
+*.lock node_modules/ package-lock.json yarn.lock
