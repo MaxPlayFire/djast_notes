@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    color: #f4f4f4;
+    margin: 20px;
+    padding: 20px;
+    font-size: 18px;
+}
+
+h1,
+h2 {
+    color: #7300ff;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #77777777;
+    margin: 10px 0;
+    padding: 15px;
+    border: 2px solid #88888877;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+a {
+    color: #7300ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #7300ff;
+    color: #f4f4f4;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+button:hover {
+    background-color: #4c00a8;
+}
+
+p {
+    font-weight: bold;
+}
+
+
+/* Нові стилі для форм */
+
+form {
+    max-width: 70vw;
+    margin: 10vh auto;
+    padding: 20px;
+    background-color: #77777777;
+    border: 2px solid #88888877;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    background-color: #7300ff;
+    /* Зелений для збереження/реєстрації */
+    color: #f4f4f4;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    background-color: #4c00a8;
+}
+
+
+/* Стилі для помилок */
+
+.error,
+p[style*="color: red"],
+p[style*="color: rgb(255, 0, 0)"] {
+    color: red !important;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/* Стилі для детальної сторінки задач */
+
+.task-detail p {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #090909;
+    border-left: 4px solid #5900ff;
+}

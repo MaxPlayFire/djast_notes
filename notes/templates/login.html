@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Вхід</title>
+    <link rel="stylesheet" href="{% static 'notes/style.css' %}">
+</head>
+
+<body>
+    <h2>Вхід</h2>
+    <form method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Увійти</button>
+        <a href="/">На головну сторінку</a> {% if form.errors %}
+        <p class="error">Невірне ім'я користувача або пароль</p>
+        {% endif %}
+    </form>
+
+
+
+
+</body>
+
+</html>

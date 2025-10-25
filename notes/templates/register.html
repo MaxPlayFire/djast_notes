@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Реєстрація</title>
+    <link rel="stylesheet" href="{% static 'notes/style.css' %}">
+</head>
+
+<body>
+    <h2>Реєстрація</h2>
+
+    <form method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Зареєструватися</button> {% for message in messages %}
+        <p class="error">{{ message }}</p>
+        {% endfor %}
+
+        <a href="/">На головну сторінку</a>
+    </form>
+
+
+</body>
+
+</html>

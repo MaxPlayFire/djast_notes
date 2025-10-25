@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Список задач</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'notes/style.css' %}">
+</head>
+
+<body>
+
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}">
+        <button>Вийти</button>
+    </a> {% else %}
+    <a href="{% url 'login' %}"><button>Увійти</button></a>
+    <a href="{% url 'register' %}"><button>Зареєструватися</button></a> {% endif %}
+    <form>
+        <h1>Список задач:</h1>
+        <a href="{% url 'task_create' %}">Створити задачу</a>
+
+        <ul>
+            {% for task in tasks %}
+            <li>
+                <b><a href="{% url 'task_detail' task.pk %}">{{ task.title }}</a></b> — {{ task.get_status_display }} ({{ task.get_priority_display }})
+            </li>
+            {% empty %}
+            <li>Задач немає</li>
+            {% endfor %}
+        </ul>
+    </form>
+</body>
+
+</html>
