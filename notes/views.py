@@ -41,6 +41,6 @@ def register(request):
         else:
             User.objects.create_user(username=username, password=password)
             messages.success(request, "")
-            return redirect('login')  # после регистрации — на логин
+            return redirect('login')
     return render(request, 'register.html', {'form': form})
 

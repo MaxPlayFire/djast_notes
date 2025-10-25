@@ -9,7 +9,7 @@ body {
 
 h1,
 h2 {
-    color: #7300ff;
+    color: #9f50ff;
     text-align: center;
 }
 
@@ -28,7 +28,7 @@ li {
 }
 
 a {
-    color: #7300ff;
+    color: #9f50ff;
     text-decoration: none;
 }
 
@@ -37,7 +37,7 @@ a:hover {
 }
 
 button {
-    background-color: #7300ff;
+    background-color: #9f50ff;
     color: #f4f4f4;
     border: none;
     padding: 10px 15px;
@@ -47,15 +47,12 @@ button {
 }
 
 button:hover {
-    background-color: #4c00a8;
+    background-color: #6c35af;
 }
 
 p {
     font-weight: bold;
 }
-
-
-/* Нові стилі для форм */
 
 form {
     max-width: 70vw;
@@ -65,6 +62,18 @@ form {
     border: 2px solid #88888877;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.logout-form {
+    max-width: 1vw;
+    background-color: none;
+    border: none;
+    box-shadow: none;
+    background: none;
+    max-width: 100%;
+    padding: none;
+    margin: 0;
+    display: inline-block;
 }
 
 label {
@@ -87,8 +96,7 @@ select {
 }
 
 button[type="submit"] {
-    background-color: #7300ff;
-    /* Зелений для збереження/реєстрації */
+    background-color: #9f50ff;
     color: #f4f4f4;
     padding: 10px 15px;
     border: none;
@@ -98,11 +106,8 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #4c00a8;
+    background-color: #6c35af;
 }
-
-
-/* Стилі для помилок */
 
 .error,
 p[style*="color: red"],
@@ -112,12 +117,9 @@ p[style*="color: rgb(255, 0, 0)"] {
     text-align: center;
 }
 
-
-/* Стилі для детальної сторінки задач */
-
 .task-detail p {
     margin: 10px 0;
     padding: 10px;
     background-color: #090909;
-    border-left: 4px solid #5900ff;
+    border-left: 4px solid #9f50ff;
 }

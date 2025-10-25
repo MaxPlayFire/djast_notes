@@ -14,9 +14,10 @@
     <form method="post">
         {% csrf_token %} {{ form.as_p }}
         <button type="submit">Зберегти</button>
+        <a href="{% url 'task_list' %}">Назад</a>
     </form>
 
-    <a href="{% url 'task_list' %}">Назад</a>
+
 </body>
 
 </html>
