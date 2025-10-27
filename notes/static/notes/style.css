@@ -5,7 +5,7 @@
     --accent-dark: #6c35af;
     --card-bg: rgba(119, 119, 119, 0.4);
     --border: rgba(136, 136, 136, 0.4);
-    --form-bg: linear-gradient(45deg, #3b1963, #603c8d);
+    --form-bg: linear-gradient(45deg, #3b1963, #6b4798);
 }
 
 [data-theme="light"] {
