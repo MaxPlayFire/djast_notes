@@ -1,16 +1,37 @@
+:root {
+    --bg: #222;
+    --text: #f4f4f4;
+    --accent: #9f50ff;
+    --accent-dark: #6c35af;
+    --card-bg: rgba(119, 119, 119, 0.4);
+    --border: rgba(136, 136, 136, 0.4);
+    --form-bg: linear-gradient(45deg, #3b1963, #603c8d);
+}
+
+[data-theme="light"] {
+    --bg: #efe1f7;
+    --text: #7e2cff;
+    --accent: #7e2cff;
+    --accent-dark: #5a1ecc;
+    --card-bg: rgba(220, 220, 220, 0.4);
+    --border: rgba(150, 150, 150, 0.4);
+    --form-bg: linear-gradient(45deg, #d4a3ff, #a467ff);
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #222;
-    color: #f4f4f4;
-    margin: 20px;
-    padding: 20px;
+    background-color: var(--bg);
+    color: var(--text);
     font-size: 18px;
+    transition: background-color 0.6s ease, color 0.6s ease;
+    position: relative;
 }
 
 h1,
 h2 {
-    color: #9f50ff;
+    color: var(--accent);
     text-align: center;
+    transition: color 0.6s ease;
 }
 
 ul {
@@ -19,17 +40,18 @@ ul {
 }
 
 li {
-    background-color: #77777777;
+    background-color: var(--card-bg);
     margin: 10px 0;
     padding: 15px;
-    border: 2px solid #88888877;
+    border: 2px solid var(--border);
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 a {
-    color: #9f50ff;
+    color: var(--accent);
     text-decoration: none;
+    transition: color 0.4s ease;
 }
 
 a:hover {
@@ -37,41 +59,53 @@ a:hover {
 }
 
 button {
-    background-color: #9f50ff;
-    color: #f4f4f4;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: #fff;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 12px 18px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 0 10px var(--accent-dark);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.6s ease;
 }
 
 button:hover {
-    background-color: #6c35af;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--accent);
+    animation: glow 1.2s infinite alternate;
 }
 
-p {
-    font-weight: bold;
+@keyframes glow {
+    from {
+        box-shadow: 0 0 8px var(--accent-dark);
+    }
+    to {
+        box-shadow: 0 0 16px var(--accent);
+    }
+}
+
+button[type="submit"] {
+    width: 100%;
 }
 
 form {
     max-width: 70vw;
     margin: 10vh auto;
     padding: 20px;
-    background-color: #77777777;
-    border: 2px solid #88888877;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    background: var(--form-bg);
+    border: 3px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    transition: background 0.6s ease, border 0.6s ease;
 }
 
 .logout-form {
-    max-width: 1vw;
-    background-color: none;
+    background: none;
     border: none;
     box-shadow: none;
-    background: none;
-    max-width: 100%;
-    padding: none;
+    padding: 0;
     margin: 0;
     display: inline-block;
 }
@@ -95,20 +129,6 @@ select {
     box-sizing: border-box;
 }
 
-button[type="submit"] {
-    background-color: #9f50ff;
-    color: #f4f4f4;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-}
-
-button[type="submit"]:hover {
-    background-color: #6c35af;
-}
-
 .error,
 p[style*="color: red"],
 p[style*="color: rgb(255, 0, 0)"] {
@@ -121,5 +141,13 @@ p[style*="color: rgb(255, 0, 0)"] {
     margin: 10px 0;
     padding: 10px;
     background-color: #090909;
-    border-left: 4px solid #9f50ff;
+    border-left: 4px solid var(--accent);
+}
+
+#themeToggle {
+    position: absolute;
+    right: 0px;
+    padding: 8px 12px;
+    font-size: 24px;
+    z-index: 1000;
 }

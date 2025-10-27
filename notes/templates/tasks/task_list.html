@@ -1,44 +1,16 @@
-<!DOCTYPE html>
-<html lang="uk">
+{% extends 'base.html' %} {% block title %}Список задач{% endblock %} {% block content %}
+<form>
+    <h1>Список задач:</h1>
+    <a href="{% url 'task_create' %}">Створити задачу</a>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Список задач</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'notes/style.css' %}">
-</head>
-
-<body>
-
-    {% if user.is_authenticated %}
-    <form method="post" action="{% url 'logout' %}" class="logout-form">
-        {% csrf_token %}
-        <button>Вийти</button>
-    </form>
-    {% else %}
-    <form method="post" action="{% url 'login' %}" class="logout-form">
-        {% csrf_token %}
-        <button>Увійти</button>
-    </form>
-    <form method="post" action="{% url 'register' %}" class="logout-form">
-        {% csrf_token %}
-        <button>Зареєструватися</button>
-    </form>
-    {% endif %}
-    <form>
-        <h1>Список задач:</h1>
-        <a href="{% url 'task_create' %}">Створити задачу</a>
-
-        <ul>
-            {% for task in tasks %}
-            <li>
-                <b><a href="{% url 'task_detail' task.pk %}">{{ task.title }}</a></b> — {{ task.get_status_display }} ({{ task.get_priority_display }})
-            </li>
-            {% empty %}
-            <li>Задач немає</li>
-            {% endfor %}
-        </ul>
-    </form>
-</body>
-
-</html>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            <b><a href="{% url 'task_detail' task.pk %}">{{ task.title }}</a></b> — {{ task.get_status_display }} ({{ task.get_priority_display }})
+        </li>
+        {% empty %}
+        <li>Задач немає</li>
+        {% endfor %}
+    </ul>
+</form>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Список задач{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'notes/style.css' %}">
+</head>
+
+<body>
+    {% if user.is_authenticated %}
+    <form method="post" action="{% url 'logout' %}" class="logout-form">
+        {% csrf_token %}
+        <button>Вийти</button>
+    </form>
+    {% else %}
+    <form method="post" action="{% url 'login' %}" class="logout-form">
+        {% csrf_token %}
+        <button>Увійти</button>
+    </form>
+    <form method="post" action="{% url 'register' %}" class="logout-form">
+        {% csrf_token %}
+        <button>Зареєструватися</button>
+    </form>
+    {% endif %}
+    <button id="themeToggle">☀️</button> {% block content %} {% endblock %}
+
+    <script>
+        const btn = document.getElementById("themeToggle");
+
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "light") {
+            document.body.setAttribute("data-theme", "light");
+            btn.innerHTML = "🌙";
+        } else {
+            btn.innerHTML = "☀️";
+        }
+
+        btn.addEventListener("click", () => {
+            if (document.body.getAttribute("data-theme") === "light") {
+                document.body.removeAttribute("data-theme");
+                localStorage.setItem("theme", "dark");
+                btn.innerHTML = "☀️";
+            } else {
+                document.body.setAttribute("data-theme", "light");
+                localStorage.setItem("theme", "light");
+                btn.innerHTML = "🌙";
+            }
+        });
+    </script>
+</body>
+
+</html>
