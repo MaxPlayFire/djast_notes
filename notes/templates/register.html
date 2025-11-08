@@ -9,18 +9,17 @@
 </head>
 
 <body>
-    <h2>Реєстрація</h2>
 
-    <form method="post">
-        {% csrf_token %} {{ form.as_p }}
-        <button type="submit">Зареєструватися</button> {% for message in messages %}
-        <p class="error">{{ message }}</p>
-        {% endfor %}
-
-        <a href="/">На головну сторінку</a>
-    </form>
-
-
+    <div>
+        <form method="post">
+            <h2>Реєстрація</h2>
+            {% csrf_token %} {{ form.as_p }}
+            <button type="submit">Зареєструватися</button> {% for message in messages %}
+            <p class="error">{{ message }}</p>
+            {% endfor %}
+            <button onclick="location.href='/'">На головну сторінку</button>
+        </form>
+    </div>
 </body>
 
 </html>

@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block title %}Редагувати коментар{% endblock %} {% block content %}
+<div>
+    <h1>Редагувати коментар</h1>
+
+    <form method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Зберегти</button>
+        <button onclick="location.href='{% url 'task_detail' object.task.pk %}'">Назад</button>
+    </form>
+</div>
+{% endblock %}

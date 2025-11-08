@@ -14,7 +14,19 @@
         {% csrf_token %}
         <button>Вийти</button>
     </form>
-    {% else %}
+
+
+    <button class="profile-button" onclick="location.href='{% url 'profile' %}'"> {{ profile.user.username }}
+        {% if profile.avatar %}
+        <img src="{{ profile.avatar.url }}" alt="Аватарка" class="profile-ava">
+        {% else %}
+        <div class="default-ava">{{ profile.user.username|first|upper }}</div>
+        {% endif %}
+
+        {% else %}
+
+
+
     <form method="post" action="{% url 'login' %}" class="logout-form">
         {% csrf_token %}
         <button>Увійти</button>
@@ -24,11 +36,16 @@
         <button>Зареєструватися</button>
     </form>
     {% endif %}
-    <button id="themeToggle">☀️</button> {% block content %} {% endblock %}
+    <button id="themeToggle">◑</button> {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %} {% block content %} {% endblock %}
 
     <script>
         const btn = document.getElementById("themeToggle");
-
         const savedTheme = localStorage.getItem("theme");
         if (savedTheme === "light") {
             document.body.setAttribute("data-theme", "light");

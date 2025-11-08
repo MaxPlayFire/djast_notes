@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block title %}Редагувати профіль{% endblock %} {% block content %}
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <h1>Редагувати профіль</h1>
+        {% csrf_token %} {{ form.as_p }}
+
+        <label for="id_avatar" class="upload-button"></label>
+        <input type="file" id="id_avatar" name="avatar" style="display: none;">
+
+        <button type="submit">Зберегти</button>
+        <button onclick="location.href='{% url 'profile' %}'">Назад</button>
+    </form>
+</div>
+{% endblock %}

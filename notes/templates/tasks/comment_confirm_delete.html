@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block title %}Видалити коментар{% endblock %} {% block content %}
+<div>
+    <h1>Видалити коментар?</h1>
+    <p>Ви впевнені, що хочете видалити коментар: "{{ object.content }}"?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Так, видалити</button>
+        <button onclick="location.href='{% url 'task_detail' object.task.pk %}'">Ні, назад</button>
+    </form>
+</div>
+{% endblock %}

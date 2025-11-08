@@ -1,9 +1,14 @@
-{% extends 'base.html' %} {% block title %}Створити задачу{% endblock %} {% block content %}
-<h1>Створити задачу</h1>
+{% extends 'base.html' %} {% block title %}Створити/Редагувати задачу{% endblock %} {% block content %}
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <h1>{% if object %}Редагувати задачу{% else %}Створити задачу{% endif %}</h1>
+        {% csrf_token %} {{ form.as_p }}
 
-<form method="post">
-    {% csrf_token %} {{ form.as_p }}
-    <button type="submit">Зберегти</button>
-    <a href="{% url 'task_list' %}">Назад</a>
-</form>
+        <label for="images" class="upload-button"></label>
+        <input type="file" id="images" name="images" multiple style="display: none;">
+
+        <button type="submit">Зберегти</button>
+        <button onclick="location.href='{% url 'task_list' %}'">Назад</button>
+    </form>
+</div>
 {% endblock %}

@@ -1,11 +1,45 @@
 {% extends 'base.html' %} {% block title %}{{ task.title }}{% endblock %} {% block content %}
-<form>
-    <h1>{{ task.title }}</h1>
-    <p><b>Опис:</b> {{ task.description }}</p>
-    <p><b>Статус:</b> {{ task.get_status_display }}</p>
-    <p><b>Пріоритет:</b> {{ task.get_priority_display }}</p>
-    <p><b>Дата:</b> {{ task.date }}</p>
+<div>
+    <form>
+        <h1>{{ task.title }}</h1>
+        <p><b>Опис:</b> {{ task.description }}</p>
+        <p><b>Статус:</b> {{ task.get_status_display }}</p>
+        <p><b>Пріоритет:</b> {{ task.get_priority_display }}</p>
+        <p><b>Дата:</b> {{ task.date }}</p>
+        <p><b>Автор:</b> {{ task.creator.username }}</p>
 
-    <a href="{% url 'task_list' %}">Назад до списку</a>
-</form>
-{% endblock %}
+        {% if task.images.all %} {% for image in task.images.all %}
+        <img src="{{ image.image.url }}" alt="Зображення задачі" class="task-image"> {% endfor %} {% endif %} {% if user == task.creator %}
+    </form>
+    <button onclick="location.href='{% url 'task_update' task.pk %}'">Редагувати</button>
+    <button onclick="location.href='{% url 'task_delete' task.pk %}'">Видалити</button> {% endif %}
+
+    <button onclick="location.href='{% url 'task_list' %}'">Назад до списку</button>
+
+</div>
+<div>
+    <h3>Додати коментар:</h3>
+    <form method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Додати</button>
+    </form>
+    <h2>Коментарі:</h2>
+    {% for comment in comments %}
+    <div class="comment">
+        <p><b>{{ comment.author.username }}</b> ({{ comment.created_at }}):</p>
+        <p>{{ comment.content }}</p>
+        <p>👍 {{ comment.likes.count }}</p>
+
+        <form method="post" action="{% url 'comment_like' comment.pk %}">
+            {% csrf_token %}
+            <button type="submit">{% if user in comment.likes.all %}❌👍{% else %}👍{% endif %}</button>
+        </form>
+        {% if user == comment.author %}
+        <button onclick="location.href='{% url 'comment_edit' comment.pk %}'">Редагувати</button>
+        <button onclick="location.href='{% url 'comment_delete' comment.pk %}'">Видалити</button> {% endif %}
+    </div>
+    {% empty %}
+    <p>Коментарів немає.</p>
+    {% endfor %} {% if user.is_authenticated %}
+</div>
+{% endif %} {% endblock %}

@@ -9,18 +9,15 @@
 </head>
 
 <body>
-    <h2>Вхід</h2>
-    <form method="post">
-        {% csrf_token %} {{ form.as_p }}
-        <button type="submit">Увійти</button>
-        <a href="/">На головну сторінку</a> {% if form.errors %}
-        <p class="error">Невірне ім'я користувача або пароль</p>
-        {% endif %}
-    </form>
-
-
-
-
+    <div>
+        <form method="post">
+            <h2>Вхід</h2>
+            {% csrf_token %} {{ form.as_p }}
+            <p class="error">Невірне ім'я користувача або пароль</p>
+            <button type="submit">Увійти</button>
+            <button onclick="location.href='/'">На головну сторінку</button> {% if form.errors %} {% endif %}
+        </form>
+    </div>
 </body>
 
 </html>

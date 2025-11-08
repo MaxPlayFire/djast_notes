@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block title %}Профіль{% endblock %} {% block content %}
+<div>
+    <h1>Профіль користувача {{ profile.user.username }}</h1>
+
+    {% if profile.avatar %}
+    <img src="{{ profile.avatar.url }}" alt="Аватарка" class="profile-avatar"> {% else %}
+    <div class="default-avatar">{{ profile.user.username|first|upper }}</div>
+    {% endif %}
+
+    <p><b>ім'я:</b> {{ profile.full_name|default:"Не вказано" }}</p>
+    <p><b>Опис:</b> {{ profile.bio|default:"Не вказано" }}</p>
+
+    <button onclick="location.href='{% url 'edit_profile' %}'">Редагувати профіль</button>
+    <button onclick="location.href='{% url 'task_list' %}'">Назад</button> {% endblock %}
+</div>
