@@ -1,25 +1,26 @@
-{% extends 'base.html' %} {% block title %}{{ task.title }}{% endblock %} {% block content %}
-<div>
-    <form>
-        <h1>{{ task.title }}</h1>
-        <p><b>Опис:</b> {{ task.description }}</p>
-        <p><b>Статус:</b> {{ task.get_status_display }}</p>
-        <p><b>Пріоритет:</b> {{ task.get_priority_display }}</p>
-        <p><b>Дата:</b> {{ task.date }}</p>
-        <p><b>Автор:</b> {{ task.creator.username }}</p>
+ {% extends 'base.html' %} {% block content %}
+<div class="content-container">
+    <h1>{{ task.title }}</h1>
+    <p><b>Опис:</b> {{ task.description }}</p>
+    <p><b>Статус:</b> {{ task.get_status_display }}</p>
+    <p><b>Пріоритет:</b> {{ task.get_priority_display }}</p>
+    <p><b>Дата:</b> {{ task.date }}</p>
+    <p><b>Автор:</b> {{ task.creator.username }}</p>
 
-        {% if task.images.all %} {% for image in task.images.all %}
-        <img src="{{ image.image.url }}" alt="Зображення задачі" class="task-image"> {% endfor %} {% endif %} {% if user == task.creator %}
-    </form>
+    {% if task.images.all %}
+    <h2>Зображення:</h2>
+    {% for image in task.images.all %}
+    <img src="{{ image.image.url }}" alt="Зображення задачі" class="task-image"> {% endfor %} {% endif %} {% if user == task.creator %}
     <button onclick="location.href='{% url 'task_update' task.pk %}'">Редагувати</button>
     <button onclick="location.href='{% url 'task_delete' task.pk %}'">Видалити</button> {% endif %}
 
     <button onclick="location.href='{% url 'task_list' %}'">Назад до списку</button>
-
 </div>
 <div>
-    <h3>Додати коментар:</h3>
-    <form method="post">
+    {% if user.is_authenticated %}
+    <form method="post" class="form-container">
+        <h3>Додати коментар:</h3>
+
         {% csrf_token %} {{ form.as_p }}
         <button type="submit">Додати</button>
     </form>
@@ -40,6 +41,7 @@
     </div>
     {% empty %}
     <p>Коментарів немає.</p>
-    {% endfor %} {% if user.is_authenticated %}
+    {% endfor %}
+
 </div>
 {% endif %} {% endblock %}

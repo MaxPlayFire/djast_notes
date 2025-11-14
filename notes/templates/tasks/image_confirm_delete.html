@@ -1,13 +1,12 @@
 {% extends 'base.html' %} {% block title %}Видалити задачу{% endblock %} {% block content %}
 <div class="content-container">
     <h1>Видалити задачу?</h1>
-    <p>Ви впевнені, що хочете видалити задачу: <strong>"{{ object.title }}"</strong>?</p>
-    <p>Ця дія незворотна.</p>
+    <p>Ви впевнені, що хочете видалити задачу "{{ object.title }}"?</p>
 
     <form method="post">
         {% csrf_token %}
         <button type="submit">Так, видалити</button>
-        <button type="button" onclick="location.href='{% url 'task_detail' object.pk %}'">Ні, назад</button>
+        <button class="action-button" onclick="location.href='{% url 'task_detail' object.pk %}'">Ні, назад</button>
     </form>
 </div>
 {% endblock %}

@@ -183,3 +183,18 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         messages.success(self.request, "Профіль оновлено!")
         return reverse_lazy('profile')
+
+class TaskImageDeleteView(LoginRequiredMixin, DeleteView):
+    model = TaskImage
+    template_name = 'tasks/task_confirm_delete.html'
+
+    def get_success_url(self):
+        messages.success(self.request, "Зображення видалено!")
+        return reverse_lazy('task_update', kwargs={'pk': self.object.task.pk})
+
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.task.creator != request.user:
+            messages.error(request, "Ви не можете видаляти зображення з чужої задачі.")
+            raise PermissionDenied
+        return super().dispatch(request, *args, **kwargs)

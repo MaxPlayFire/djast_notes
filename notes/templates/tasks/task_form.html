@@ -1,12 +1,15 @@
 {% extends 'base.html' %} {% block title %}Створити/Редагувати задачу{% endblock %} {% block content %}
+
 <div>
     <form method="post" enctype="multipart/form-data">
         <h1>{% if object %}Редагувати задачу{% else %}Створити задачу{% endif %}</h1>
         {% csrf_token %} {{ form.as_p }}
-
         <label for="images" class="upload-button"></label>
-        <input type="file" id="images" name="images" multiple style="display: none;">
-
+        <input type="file" id="images" name="images" multiple> {% if object %}
+        <h2>Існуючі зображення:</h2>
+        {% for image in object.images.all %}
+        <img src="{{ image.image.url }}" alt="Зображення задачі" class="task-image">
+        <button class="action-button" onclick="location.href='{% url 'image_delete' image.pk %}'">Видалити зображення</button> {% endfor %} {% endif %}
         <button type="submit">Зберегти</button>
         <button onclick="location.href='{% url 'task_list' %}'">Назад</button>
     </form>

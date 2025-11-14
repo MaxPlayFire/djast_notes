@@ -16,14 +16,8 @@
     </form>
 
 
-    <button class="profile-button" onclick="location.href='{% url 'profile' %}'"> {{ profile.user.username }}
-        {% if profile.avatar %}
-        <img src="{{ profile.avatar.url }}" alt="Аватарка" class="profile-ava">
-        {% else %}
-        <div class="default-ava">{{ profile.user.username|first|upper }}</div>
-        {% endif %}
-
-        {% else %}
+    <button class="profile-button" onclick="location.href='{% url 'profile' %}'">{{ user.username }}
+    </button> {% else %}
 
 
 
